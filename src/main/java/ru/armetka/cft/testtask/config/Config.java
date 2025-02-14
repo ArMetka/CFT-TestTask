@@ -4,12 +4,15 @@ import org.apache.commons.cli.*;
 import ru.armetka.cft.testtask.enums.OptionsListEnum;
 import ru.armetka.cft.testtask.enums.StatisticsModesEnum;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Config {
-    private String outputPath;
-    private String outputPrefix;
+    private String outputPath = ".";
+    private String outputPrefix = "";
     private Boolean appendMode = false;
-    private String statisticsMode = StatisticsModesEnum.SHORT.toString();
-    private String[] inputFiles;
+    private StatisticsModesEnum statisticsMode = StatisticsModesEnum.SHORT;
+    private final List<String> inputFiles = new ArrayList<>();
 
     public Config() {
     }
@@ -21,6 +24,7 @@ public class Config {
         CommandLine cmd = parser.parse(opt, args);
 
         this.loadOptions(cmd);
+        this.loadFilenames(cmd);
     }
 
     private Options setupOptions() {
@@ -51,11 +55,25 @@ public class Config {
         }
 
         if (cmd.hasOption(OptionsListEnum.STATISTICS_SHORT.toString())) {
-            this.statisticsMode = StatisticsModesEnum.SHORT.toString();
+            this.statisticsMode = StatisticsModesEnum.SHORT;
         }
 
         if (cmd.hasOption(OptionsListEnum.STATISTICS_FULL.toString())) {
-            this.statisticsMode = StatisticsModesEnum.FULL.toString();
+            this.statisticsMode = StatisticsModesEnum.FULL;
+        }
+    }
+
+    private void loadFilenames(CommandLine cmd) throws ParseException {
+        List<String> args = cmd.getArgList();
+
+        for (var arg : args) {
+            if (arg.endsWith(".txt")) {
+                this.inputFiles.add(arg);
+            }
+        }
+
+        if (this.inputFiles.isEmpty()) {
+            throw new ParseException("no input files specified");
         }
     }
 
@@ -71,11 +89,11 @@ public class Config {
         return appendMode;
     }
 
-    public String getStatisticsMode() {
+    public StatisticsModesEnum getStatisticsMode() {
         return statisticsMode;
     }
 
-    public String[] getInputFiles() {
+    public List<String> getInputFiles() {
         return inputFiles;
     }
 }

@@ -1,11 +1,11 @@
 package ru.armetka.cft.testtask.enums;
 
 public enum OptionsListEnum {
-    OUTPUT_PATH ("o"),
-    OUTPUT_PREFIX ("p"),
-    APPEND_MODE ("a"),
-    STATISTICS_SHORT (StatisticsModesEnum.SHORT.toString()),
-    STATISTICS_FULL (StatisticsModesEnum.FULL.toString());
+    OUTPUT_PATH("o"),
+    OUTPUT_PREFIX("p"),
+    APPEND_MODE("a"),
+    STATISTICS_SHORT(StatisticsModesEnum.SHORT.toString()),
+    STATISTICS_FULL(StatisticsModesEnum.FULL.toString());
 
     private final String title;
 

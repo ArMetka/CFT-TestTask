@@ -1,8 +1,8 @@
 package ru.armetka.cft.testtask.enums;
 
 public enum StatisticsModesEnum {
-    SHORT ("s"),
-    FULL ("f");
+    SHORT("s"),
+    FULL("f");
 
     private final String title;
 
