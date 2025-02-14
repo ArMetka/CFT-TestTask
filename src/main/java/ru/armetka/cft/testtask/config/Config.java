@@ -4,6 +4,7 @@ import org.apache.commons.cli.*;
 import ru.armetka.cft.testtask.enums.OptionsListEnum;
 import ru.armetka.cft.testtask.enums.StatisticsModesEnum;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,12 +69,14 @@ public class Config {
 
         for (var arg : args) {
             if (arg.endsWith(".txt")) {
-                this.inputFiles.add(arg);
+                if (new File(arg).isFile()) {
+                    this.inputFiles.add(arg);
+                }
             }
         }
 
         if (this.inputFiles.isEmpty()) {
-            throw new ParseException("no input files specified");
+            throw new ParseException("no valid input files found");
         }
     }
 

@@ -14,7 +14,7 @@
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
 
-        <maven.plugins.cfg.mainClass>ru.armetka.cft.testtask.App</maven.plugins.cfg.mainClass>
+        <maven.plugins.cfg.mainClass>ru.armetka.cft.testtask.Main</maven.plugins.cfg.mainClass>
         <maven.plugins.jar.version>3.4.2</maven.plugins.jar.version>
     </properties>
 
