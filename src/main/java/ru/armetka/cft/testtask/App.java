@@ -1,8 +1,11 @@
 package ru.armetka.cft.testtask;
 
 import ru.armetka.cft.testtask.config.Config;
+import ru.armetka.cft.testtask.enums.StatisticsModesEnum;
 import ru.armetka.cft.testtask.service.ParseService;
+import ru.armetka.cft.testtask.service.StatisticsService;
 import ru.armetka.cft.testtask.service.impl.ParseServiceImpl;
+import ru.armetka.cft.testtask.service.impl.StatisticsServiceImpl;
 import ru.armetka.cft.testtask.storage.ParsedDataStorage;
 import ru.armetka.cft.testtask.storage.impl.ParsedDataStorageImpl;
 
@@ -10,11 +13,13 @@ public class App {
     private final Config cfg;
     private final ParsedDataStorage parsedDataStorage;
     private final ParseService parseService;
+    private final StatisticsService statisticsService;
 
     public App(Config cfg) {
         this.cfg = cfg;
         this.parsedDataStorage = new ParsedDataStorageImpl();
         this.parseService = new ParseServiceImpl(this.parsedDataStorage);
+        this.statisticsService = new StatisticsServiceImpl(this.parsedDataStorage);
     }
 
     public void run() {
@@ -23,8 +28,11 @@ public class App {
         }
 
         // TODO: delete debug
-        parsedDataStorage.print();
+        this.statisticsService.printStatistics(cfg.getStatisticsMode());
+
+        // TODO: statistics
 
 
+        // TODO: output
     }
 }

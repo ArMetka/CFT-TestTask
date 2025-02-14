@@ -28,10 +28,15 @@ public class ParsedDataStorageImpl implements ParsedDataStorage {
         this.stringList.add(entry);
     }
 
-    // TODO: delete debug
-    public void print() {
-        System.out.println(longList);
-        System.out.println(doubleList);
-        System.out.println(stringList);
+    public List<Long> getLongList() {
+        return longList;
+    }
+
+    public List<Double> getDoubleList() {
+        return doubleList;
+    }
+
+    public List<String> getStringList() {
+        return stringList;
     }
 }
