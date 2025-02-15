@@ -2,8 +2,10 @@ package ru.armetka.cft.testtask;
 
 import ru.armetka.cft.testtask.config.Config;
 import ru.armetka.cft.testtask.enums.StatisticsModesEnum;
+import ru.armetka.cft.testtask.service.OutputService;
 import ru.armetka.cft.testtask.service.ParseService;
 import ru.armetka.cft.testtask.service.StatisticsService;
+import ru.armetka.cft.testtask.service.impl.OutputServiceImpl;
 import ru.armetka.cft.testtask.service.impl.ParseServiceImpl;
 import ru.armetka.cft.testtask.service.impl.StatisticsServiceImpl;
 import ru.armetka.cft.testtask.storage.ParsedDataStorage;
@@ -14,12 +16,14 @@ public class App {
     private final ParsedDataStorage parsedDataStorage;
     private final ParseService parseService;
     private final StatisticsService statisticsService;
+    private final OutputService outputService;
 
     public App(Config cfg) {
         this.cfg = cfg;
         this.parsedDataStorage = new ParsedDataStorageImpl();
         this.parseService = new ParseServiceImpl(this.parsedDataStorage);
         this.statisticsService = new StatisticsServiceImpl(this.parsedDataStorage);
+        this.outputService = new OutputServiceImpl(this.parsedDataStorage);
     }
 
     public void run() {
@@ -27,12 +31,9 @@ public class App {
             this.parseService.processFile(file);
         }
 
-        // TODO: delete debug
-        this.statisticsService.printStatistics(cfg.getStatisticsMode());
+        var stat = this.statisticsService.generateStatistics(cfg.getStatisticsMode());
 
-        // TODO: statistics
-
-
-        // TODO: output
+        this.outputService.outputStatistics(stat, cfg.getStatisticsMode());
+        this.outputService.outputFiles(cfg.getOutputPath(), cfg.getOutputPrefix(), cfg.getAppendMode());
     }
 }

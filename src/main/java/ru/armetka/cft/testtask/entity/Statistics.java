@@ -1,5 +1,8 @@
 package ru.armetka.cft.testtask.entity;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 public class Statistics {
     // Short
     private int longsCount;
@@ -9,13 +12,13 @@ public class Statistics {
     // Full
     private long longsMin;
     private long longsMax;
-    private long longsSum;
-    private long longsAvg;
+    private BigInteger longsSum;
+    private BigDecimal longsAvg;
 
     private double doublesMin;
     private double doublesMax;
-    private double doublesSum;
-    private double doublesAvg;
+    private BigDecimal doublesSum;
+    private BigDecimal doublesAvg;
 
     private int stringsLenMin;
     private int stringsLenMax;
@@ -63,19 +66,19 @@ public class Statistics {
         this.longsMax = longsMax;
     }
 
-    public long getLongsSum() {
+    public BigInteger getLongsSum() {
         return longsSum;
     }
 
-    public void setLongsSum(long longsSum) {
+    public void setLongsSum(BigInteger longsSum) {
         this.longsSum = longsSum;
     }
 
-    public long getLongsAvg() {
+    public BigDecimal getLongsAvg() {
         return longsAvg;
     }
 
-    public void setLongsAvg(long longsAvg) {
+    public void setLongsAvg(BigDecimal longsAvg) {
         this.longsAvg = longsAvg;
     }
 
@@ -95,19 +98,19 @@ public class Statistics {
         this.doublesMax = doublesMax;
     }
 
-    public double getDoublesSum() {
+    public BigDecimal getDoublesSum() {
         return doublesSum;
     }
 
-    public void setDoublesSum(double doublesSum) {
+    public void setDoublesSum(BigDecimal doublesSum) {
         this.doublesSum = doublesSum;
     }
 
-    public double getDoublesAvg() {
+    public BigDecimal getDoublesAvg() {
         return doublesAvg;
     }
 
-    public void setDoublesAvg(double doublesAvg) {
+    public void setDoublesAvg(BigDecimal doublesAvg) {
         this.doublesAvg = doublesAvg;
     }
 
