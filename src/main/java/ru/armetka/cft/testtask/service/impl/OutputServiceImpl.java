@@ -5,6 +5,16 @@ import ru.armetka.cft.testtask.enums.StatisticsModesEnum;
 import ru.armetka.cft.testtask.service.OutputService;
 import ru.armetka.cft.testtask.storage.ParsedDataStorage;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 public class OutputServiceImpl implements OutputService {
     private final ParsedDataStorage storage;
 
@@ -53,6 +63,36 @@ public class OutputServiceImpl implements OutputService {
 
     @Override
     public void outputFiles(String path, String prefix, Boolean appendMode) {
+        try {
+            Path integersPath = Paths.get(path, prefix + "integers.txt");
+            Path floatsPath = Paths.get(path, prefix + "floats.txt");
+            Path stringsPath = Paths.get(path, prefix + "strings.txt");
 
+            this.writeList(integersPath, this.storage.getLongList(), appendMode);
+            this.writeList(floatsPath, this.storage.getDoubleList(), appendMode);
+            this.writeList(stringsPath, this.storage.getStringList(), appendMode);
+
+        } catch (FileNotFoundException | InvalidPathException e) {
+            System.err.println("failed to open file for writing: " + e.getMessage());
+            System.exit(1);
+        } catch (IOException e) {
+            System.err.println("failed to write file: " + e.getMessage());
+            System.exit(1);
+        }
+    }
+
+    private <T> void writeList(Path path, List<T> list, Boolean appendMode) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(
+                path.toString(),
+                StandardCharsets.UTF_8,
+                appendMode)
+        );
+
+        for (var item : list) {
+            writer.write(item.toString());
+            writer.newLine();
+        }
+
+        writer.close();
     }
 }

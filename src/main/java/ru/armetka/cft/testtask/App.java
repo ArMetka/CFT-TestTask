@@ -1,7 +1,6 @@
 package ru.armetka.cft.testtask;
 
 import ru.armetka.cft.testtask.config.Config;
-import ru.armetka.cft.testtask.enums.StatisticsModesEnum;
 import ru.armetka.cft.testtask.service.OutputService;
 import ru.armetka.cft.testtask.service.ParseService;
 import ru.armetka.cft.testtask.service.StatisticsService;

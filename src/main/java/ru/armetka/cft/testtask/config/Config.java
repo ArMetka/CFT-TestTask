@@ -71,6 +71,8 @@ public class Config {
             if (arg.endsWith(".txt")) {
                 if (new File(arg).isFile()) {
                     this.inputFiles.add(arg);
+                } else {
+                    System.err.println("not a file: " + arg + ", skipping...");
                 }
             }
         }
