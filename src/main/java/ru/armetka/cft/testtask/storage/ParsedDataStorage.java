@@ -1,17 +1,19 @@
 package ru.armetka.cft.testtask.storage;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 
 public interface ParsedDataStorage {
-    public void insertIntoLongs(Long entry);
+    public void insertIntoInts(BigInteger entry);
 
-    public void insertIntoDoubles(Double entry);
+    public void insertIntoFloats(BigDecimal entry);
 
     public void insertIntoStrings(String entry);
 
-    public List<Long> getLongList();
+    public List<BigInteger> getIntList();
 
-    public List<Double> getDoubleList();
+    public List<BigDecimal> getFloatList();
 
     public List<String> getStringList();
 }

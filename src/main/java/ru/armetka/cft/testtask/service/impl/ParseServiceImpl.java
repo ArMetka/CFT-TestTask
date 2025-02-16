@@ -7,6 +7,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 
 public class ParseServiceImpl implements ParseService {
@@ -38,15 +40,15 @@ public class ParseServiceImpl implements ParseService {
 
     private void parseLine(String line) {
         try {
-            var result = Long.parseLong(line);
-            this.storage.insertIntoLongs(result);
+            BigInteger result = new BigInteger(line);
+            this.storage.insertIntoInts(result);
             return;
         } catch (NumberFormatException ignored) {
         }
 
         try {
-            var result = Double.parseDouble(line);
-            this.storage.insertIntoDoubles(result);
+            BigDecimal result = new BigDecimal(line);
+            this.storage.insertIntoFloats(result);
             return;
         } catch (NumberFormatException ignored) {
         }

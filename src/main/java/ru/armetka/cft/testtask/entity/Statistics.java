@@ -5,128 +5,128 @@ import java.math.BigInteger;
 
 public class Statistics {
     // Short
-    private int longsCount;
-    private int doublesCount;
-    private int stringsCount;
+    private int intCount;
+    private int floatCount;
+    private int stringCount;
 
     // Full
-    private long longsMin;
-    private long longsMax;
-    private BigInteger longsSum;
-    private BigDecimal longsAvg;
+    private BigInteger intMin;
+    private BigInteger intMax;
+    private BigInteger intSum;
+    private BigDecimal intAvg;
 
-    private double doublesMin;
-    private double doublesMax;
-    private BigDecimal doublesSum;
-    private BigDecimal doublesAvg;
+    private BigDecimal floatMin;
+    private BigDecimal floatMax;
+    private BigDecimal floatSum;
+    private BigDecimal floatAvg;
 
-    private int stringsLenMin;
-    private int stringsLenMax;
+    private int stringLenMin;
+    private int stringLenMax;
 
     public Statistics() {
     }
 
-    public int getLongsCount() {
-        return longsCount;
+    public int getIntCount() {
+        return intCount;
     }
 
-    public void setLongsCount(int longsCount) {
-        this.longsCount = longsCount;
+    public void setIntCount(int intCount) {
+        this.intCount = intCount;
     }
 
-    public int getDoublesCount() {
-        return doublesCount;
+    public int getFloatCount() {
+        return floatCount;
     }
 
-    public void setDoublesCount(int doublesCount) {
-        this.doublesCount = doublesCount;
+    public void setFloatCount(int floatCount) {
+        this.floatCount = floatCount;
     }
 
-    public int getStringsCount() {
-        return stringsCount;
+    public int getStringCount() {
+        return stringCount;
     }
 
-    public void setStringsCount(int stringsCount) {
-        this.stringsCount = stringsCount;
+    public void setStringCount(int stringCount) {
+        this.stringCount = stringCount;
     }
 
-    public long getLongsMin() {
-        return longsMin;
+    public BigInteger getIntMin() {
+        return intMin;
     }
 
-    public void setLongsMin(long longsMin) {
-        this.longsMin = longsMin;
+    public void setIntMin(BigInteger intMin) {
+        this.intMin = intMin;
     }
 
-    public long getLongsMax() {
-        return longsMax;
+    public BigInteger getIntMax() {
+        return intMax;
     }
 
-    public void setLongsMax(long longsMax) {
-        this.longsMax = longsMax;
+    public void setIntMax(BigInteger intMax) {
+        this.intMax = intMax;
     }
 
-    public BigInteger getLongsSum() {
-        return longsSum;
+    public BigInteger getIntSum() {
+        return intSum;
     }
 
-    public void setLongsSum(BigInteger longsSum) {
-        this.longsSum = longsSum;
+    public void setIntSum(BigInteger intSum) {
+        this.intSum = intSum;
     }
 
-    public BigDecimal getLongsAvg() {
-        return longsAvg;
+    public BigDecimal getIntAvg() {
+        return intAvg;
     }
 
-    public void setLongsAvg(BigDecimal longsAvg) {
-        this.longsAvg = longsAvg;
+    public void setIntAvg(BigDecimal intAvg) {
+        this.intAvg = intAvg;
     }
 
-    public double getDoublesMin() {
-        return doublesMin;
+    public BigDecimal getFloatMin() {
+        return floatMin;
     }
 
-    public void setDoublesMin(double doublesMin) {
-        this.doublesMin = doublesMin;
+    public void setFloatMin(BigDecimal floatMin) {
+        this.floatMin = floatMin;
     }
 
-    public double getDoublesMax() {
-        return doublesMax;
+    public BigDecimal getFloatMax() {
+        return floatMax;
     }
 
-    public void setDoublesMax(double doublesMax) {
-        this.doublesMax = doublesMax;
+    public void setFloatMax(BigDecimal floatMax) {
+        this.floatMax = floatMax;
     }
 
-    public BigDecimal getDoublesSum() {
-        return doublesSum;
+    public BigDecimal getFloatSum() {
+        return floatSum;
     }
 
-    public void setDoublesSum(BigDecimal doublesSum) {
-        this.doublesSum = doublesSum;
+    public void setFloatSum(BigDecimal floatSum) {
+        this.floatSum = floatSum;
     }
 
-    public BigDecimal getDoublesAvg() {
-        return doublesAvg;
+    public BigDecimal getFloatAvg() {
+        return floatAvg;
     }
 
-    public void setDoublesAvg(BigDecimal doublesAvg) {
-        this.doublesAvg = doublesAvg;
+    public void setFloatAvg(BigDecimal floatAvg) {
+        this.floatAvg = floatAvg;
     }
 
-    public int getStringsLenMin() {
-        return stringsLenMin;
+    public int getStringLenMin() {
+        return stringLenMin;
     }
 
-    public void setStringsLenMin(int stringsLenMin) {
-        this.stringsLenMin = stringsLenMin;
+    public void setStringLenMin(int stringLenMin) {
+        this.stringLenMin = stringLenMin;
     }
 
-    public int getStringsLenMax() {
-        return stringsLenMax;
+    public int getStringLenMax() {
+        return stringLenMax;
     }
 
-    public void setStringsLenMax(int stringsLenMax) {
-        this.stringsLenMax = stringsLenMax;
+    public void setStringLenMax(int stringLenMax) {
+        this.stringLenMax = stringLenMax;
     }
 }

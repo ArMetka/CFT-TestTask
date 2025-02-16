@@ -26,8 +26,8 @@ public class StatisticsServiceImpl implements StatisticsService {
                 break;
             case FULL:
                 setStatCount(stat);
-                setStatLongs(stat);
-                setStatDoubles(stat);
+                setStatInts(stat);
+                setStatFloats(stat);
                 setStatStrings(stat);
                 break;
             default:
@@ -38,83 +38,83 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     private void setStatCount(Statistics stat) {
-        stat.setLongsCount(this.storage.getLongList().size());
-        stat.setDoublesCount(this.storage.getDoubleList().size());
-        stat.setStringsCount(this.storage.getStringList().size());
+        stat.setIntCount(this.storage.getIntList().size());
+        stat.setFloatCount(this.storage.getFloatList().size());
+        stat.setStringCount(this.storage.getStringList().size());
     }
 
-    private void setStatLongs(Statistics stat) {
-        if (this.storage.getLongList().isEmpty()) {
-            stat.setLongsMin(0);
-            stat.setLongsMax(0);
-            stat.setLongsSum(new BigInteger("0"));
-            stat.setLongsAvg(new BigDecimal("0"));
+    private void setStatInts(Statistics stat) {
+        if (this.storage.getIntList().isEmpty()) {
+            stat.setIntMin(new BigInteger("0"));
+            stat.setIntMax(new BigInteger("0"));
+            stat.setIntSum(new BigInteger("0"));
+            stat.setIntAvg(new BigDecimal("0"));
             return;
         }
 
-        long max = Long.MIN_VALUE;
-        long min = Long.MAX_VALUE;
+        BigInteger max = this.storage.getIntList().getFirst();
+        BigInteger min = this.storage.getIntList().getFirst();
         BigInteger sum = new BigInteger("0");
         BigDecimal avg;
 
-        for (var item : this.storage.getLongList()) {
-            if (item < min) {
+        for (BigInteger item : this.storage.getIntList()) {
+            if (item.compareTo(min) < 0) {
                 min = item;
             }
 
-            if (item > max) {
+            if (item.compareTo(max) > 0) {
                 max = item;
             }
 
-            sum = sum.add(BigInteger.valueOf(item));
+            sum = sum.add(item);
         }
 
-        avg = new BigDecimal(sum).divide(BigDecimal.valueOf(this.storage.getLongList().size()), 4, RoundingMode.HALF_UP);
+        avg = new BigDecimal(sum).divide(BigDecimal.valueOf(this.storage.getIntList().size()), 4, RoundingMode.HALF_UP);
 
-        stat.setLongsMin(min);
-        stat.setLongsMax(max);
-        stat.setLongsSum(sum);
-        stat.setLongsAvg(avg);
+        stat.setIntMin(min);
+        stat.setIntMax(max);
+        stat.setIntSum(sum);
+        stat.setIntAvg(avg);
     }
 
-    private void setStatDoubles(Statistics stat) {
-        if (this.storage.getDoubleList().isEmpty()) {
-            stat.setDoublesMin(0);
-            stat.setDoublesMax(0);
-            stat.setDoublesSum(new BigDecimal("0"));
-            stat.setDoublesAvg(new BigDecimal("0"));
+    private void setStatFloats(Statistics stat) {
+        if (this.storage.getFloatList().isEmpty()) {
+            stat.setFloatMin(new BigDecimal("0"));
+            stat.setFloatMax(new BigDecimal("0"));
+            stat.setFloatSum(new BigDecimal("0"));
+            stat.setFloatAvg(new BigDecimal("0"));
             return;
         }
 
-        double max = Double.MIN_VALUE;
-        double min = Double.MAX_VALUE;
+        BigDecimal max = this.storage.getFloatList().getFirst();
+        BigDecimal min = this.storage.getFloatList().getFirst();
         BigDecimal sum = new BigDecimal("0").setScale(4, RoundingMode.HALF_UP);
         BigDecimal avg;
 
-        for (var item : this.storage.getDoubleList()) {
-            if (item < min) {
+        for (BigDecimal item : this.storage.getFloatList()) {
+            if (item.compareTo(min) < 0) {
                 min = item;
             }
 
-            if (item > max) {
+            if (item.compareTo(max) > 0) {
                 max = item;
             }
 
-            sum = sum.add(BigDecimal.valueOf(item)).setScale(4, RoundingMode.HALF_UP);
+            sum = sum.add(item).setScale(4, RoundingMode.HALF_UP);
         }
 
-        avg = sum.divide(BigDecimal.valueOf(this.storage.getDoubleList().size()), 4, RoundingMode.HALF_UP);
+        avg = sum.divide(BigDecimal.valueOf(this.storage.getFloatList().size()), 4, RoundingMode.HALF_UP);
 
-        stat.setDoublesMin(min);
-        stat.setDoublesMax(max);
-        stat.setDoublesSum(sum);
-        stat.setDoublesAvg(avg);
+        stat.setFloatMin(min);
+        stat.setFloatMax(max);
+        stat.setFloatSum(sum);
+        stat.setFloatAvg(avg);
     }
 
     private void setStatStrings(Statistics stat) {
         if (this.storage.getStringList().isEmpty()) {
-            stat.setStringsLenMin(0);
-            stat.setStringsLenMax(0);
+            stat.setStringLenMin(0);
+            stat.setStringLenMax(0);
             return;
         }
 
@@ -131,7 +131,7 @@ public class StatisticsServiceImpl implements StatisticsService {
             }
         }
 
-        stat.setStringsLenMin(min);
-        stat.setStringsLenMax(max);
+        stat.setStringLenMin(min);
+        stat.setStringLenMax(max);
     }
 }
