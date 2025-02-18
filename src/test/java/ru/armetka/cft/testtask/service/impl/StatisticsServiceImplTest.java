@@ -1,6 +1,5 @@
 package ru.armetka.cft.testtask.service.impl;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -15,6 +14,8 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StatisticsServiceImplTest {
     private ParsedDataStorage storageMock;
@@ -47,18 +48,18 @@ class StatisticsServiceImplTest {
 
         Statistics stat = this.statisticsService.generateStatistics(StatisticsModesEnum.SHORT);
 
-        Assertions.assertEquals(1, stat.getIntCount());
-        Assertions.assertEquals(2, stat.getFloatCount());
-        Assertions.assertEquals(3, stat.getStringCount());
+        assertEquals(1, stat.getIntCount());
+        assertEquals(2, stat.getFloatCount());
+        assertEquals(3, stat.getStringCount());
     }
 
     @Test
     public void itHandlesZeroCountShort() {
         Statistics stat = this.statisticsService.generateStatistics(StatisticsModesEnum.SHORT);
 
-        Assertions.assertEquals(0, stat.getIntCount());
-        Assertions.assertEquals(0, stat.getFloatCount());
-        Assertions.assertEquals(0, stat.getStringCount());
+        assertEquals(0, stat.getIntCount());
+        assertEquals(0, stat.getFloatCount());
+        assertEquals(0, stat.getStringCount());
     }
 
     @Test
@@ -74,30 +75,30 @@ class StatisticsServiceImplTest {
 
         Statistics stat = this.statisticsService.generateStatistics(StatisticsModesEnum.FULL);
 
-        Assertions.assertEquals(1, stat.getIntCount());
-        Assertions.assertEquals(2, stat.getFloatCount());
-        Assertions.assertEquals(3, stat.getStringCount());
+        assertEquals(1, stat.getIntCount());
+        assertEquals(2, stat.getFloatCount());
+        assertEquals(3, stat.getStringCount());
     }
 
     @Test
     public void itHandlesZeroCountFull() {
         Statistics stat = this.statisticsService.generateStatistics(StatisticsModesEnum.FULL);
 
-        Assertions.assertEquals(0, stat.getIntCount());
-        Assertions.assertEquals(new BigInteger("0"), stat.getIntMin());
-        Assertions.assertEquals(new BigInteger("0"), stat.getIntMax());
-        Assertions.assertEquals(new BigInteger("0"), stat.getIntSum());
-        Assertions.assertEquals(new BigDecimal("0"), stat.getIntAvg());
+        assertEquals(0, stat.getIntCount());
+        assertEquals(new BigInteger("0"), stat.getIntMin());
+        assertEquals(new BigInteger("0"), stat.getIntMax());
+        assertEquals(new BigInteger("0"), stat.getIntSum());
+        assertEquals(new BigDecimal("0"), stat.getIntAvg());
 
-        Assertions.assertEquals(0, stat.getFloatCount());
-        Assertions.assertEquals(new BigDecimal("0"), stat.getFloatMin());
-        Assertions.assertEquals(new BigDecimal("0"), stat.getFloatMax());
-        Assertions.assertEquals(new BigDecimal("0"), stat.getFloatSum());
-        Assertions.assertEquals(new BigDecimal("0"), stat.getFloatAvg());
+        assertEquals(0, stat.getFloatCount());
+        assertEquals(new BigDecimal("0"), stat.getFloatMin());
+        assertEquals(new BigDecimal("0"), stat.getFloatMax());
+        assertEquals(new BigDecimal("0"), stat.getFloatSum());
+        assertEquals(new BigDecimal("0"), stat.getFloatAvg());
 
-        Assertions.assertEquals(0, stat.getStringCount());
-        Assertions.assertEquals(0, stat.getStringLenMin());
-        Assertions.assertEquals(0, stat.getStringLenMax());
+        assertEquals(0, stat.getStringCount());
+        assertEquals(0, stat.getStringLenMin());
+        assertEquals(0, stat.getStringLenMax());
     }
 
     @Test
@@ -115,20 +116,20 @@ class StatisticsServiceImplTest {
 
         Statistics stat = this.statisticsService.generateStatistics(StatisticsModesEnum.FULL);
 
-        Assertions.assertEquals(3, stat.getIntCount());
-        Assertions.assertEquals(new BigInteger("-1234567891234567891234567890"), stat.getIntMin());
-        Assertions.assertEquals(new BigInteger("1234567891234567891234567890"), stat.getIntMax());
-        Assertions.assertEquals(new BigInteger("50"), stat.getIntSum());
-        Assertions.assertEquals(new BigDecimal("50").divide(new BigDecimal("3"), 4, RoundingMode.HALF_UP), stat.getIntAvg());
+        assertEquals(3, stat.getIntCount());
+        assertEquals(new BigInteger("-1234567891234567891234567890"), stat.getIntMin());
+        assertEquals(new BigInteger("1234567891234567891234567890"), stat.getIntMax());
+        assertEquals(new BigInteger("50"), stat.getIntSum());
+        assertEquals(new BigDecimal("50").divide(new BigDecimal("3"), 4, RoundingMode.HALF_UP), stat.getIntAvg());
 
-        Assertions.assertEquals(3, stat.getFloatCount());
-        Assertions.assertEquals(new BigDecimal("-1234567891234567891234567890"), stat.getFloatMin());
-        Assertions.assertEquals(new BigDecimal("1234567891234567891234567890"), stat.getFloatMax());
-        Assertions.assertEquals(new BigDecimal("-50").setScale(4, RoundingMode.HALF_UP), stat.getFloatSum());
-        Assertions.assertEquals(new BigDecimal("-50").divide(new BigDecimal("3"), 4, RoundingMode.HALF_UP), stat.getFloatAvg());
+        assertEquals(3, stat.getFloatCount());
+        assertEquals(new BigDecimal("-1234567891234567891234567890"), stat.getFloatMin());
+        assertEquals(new BigDecimal("1234567891234567891234567890"), stat.getFloatMax());
+        assertEquals(new BigDecimal("-50").setScale(4, RoundingMode.HALF_UP), stat.getFloatSum());
+        assertEquals(new BigDecimal("-50").divide(new BigDecimal("3"), 4, RoundingMode.HALF_UP), stat.getFloatAvg());
 
-        Assertions.assertEquals(2, stat.getStringCount());
-        Assertions.assertEquals(19, stat.getStringLenMin());
-        Assertions.assertEquals(38, stat.getStringLenMax());
+        assertEquals(2, stat.getStringCount());
+        assertEquals(19, stat.getStringLenMin());
+        assertEquals(38, stat.getStringLenMax());
     }
 }
