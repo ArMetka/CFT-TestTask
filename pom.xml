@@ -14,8 +14,6 @@
         <maven.compiler.release>21</maven.compiler.release>
 
         <maven.plugins.cfg.mainClass>ru.armetka.cft.testtask.Main</maven.plugins.cfg.mainClass>
-        <maven.plugins.jar.version>3.4.2</maven.plugins.jar.version>
-        <maven.plugins.asm.version>3.7.1</maven.plugins.asm.version>
     </properties>
 
     <build>
@@ -63,7 +61,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven.plugins.jar.version}</version>
+                <version>3.4.2</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -78,7 +76,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>${maven.plugins.asm.version}</version>
+                <version>3.7.1</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -99,16 +97,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-
-
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-surefire-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <argLine>@{argLine} -javaagent:${settings.localRepository}/org/mockito/mockito-core/${5.15.2}/mockito-core-${5.15.2}.jar</argLine>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
         </plugins>
     </build>
 
