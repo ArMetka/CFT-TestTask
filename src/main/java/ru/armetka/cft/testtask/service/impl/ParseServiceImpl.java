@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class ParseServiceImpl implements ParseService {
     private final ParsedDataStorage storage;
@@ -39,6 +40,10 @@ public class ParseServiceImpl implements ParseService {
     }
 
     private void parseLine(String line) {
+        if (Objects.equals(line, "")) {
+            return;
+        }
+
         try {
             BigInteger result = new BigInteger(line);
             this.storage.insertIntoInts(result);
