@@ -4,7 +4,7 @@
 
 ### Использованные инструменты
 
-- Java - [Amazon Corretto 21](https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html)
+- JDK - [Amazon Corretto 21](https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html)
 
 - Система сборки - [Apache Maven 3.9.9](https://maven.apache.org/download.cgi)
 
@@ -14,6 +14,26 @@
     <groupId>commons-cli</groupId>
     <artifactId>commons-cli</artifactId>
     <version>1.9.0</version>
+</dependency>
+```
+
+- Фреймворк для тестирования - [jUnit 5.11.4](https://junit.org/junit5/)
+```xml
+<dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-api</artifactId>
+    <version>5.11.4</version>
+    <scope>test</scope>
+</dependency>
+```
+
+- Фреймворк для Mock-тестирования - [Mockito 5.15.2](https://site.mockito.org)
+```xml
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-core</artifactId>
+    <version>5.15.2</version>
+    <scope>test</scope>
 </dependency>
 ```
 
@@ -39,7 +59,7 @@
 git clone https://github.com/ArMetka/CFT-TestTask
 ```
 
-2. Собрать проект при помощи `mnv` или `mvnw`
+2. Собрать проект при помощи `mvn` или `mvnw`
 ```shell
 cd CFT-TestTask
 mvn clean package
@@ -66,17 +86,33 @@ java -jar CFT-test.jar [-afs]... -p OUTPUT_PREFIX [FILE]...
 
 #### Опции
 
-| Опция |      Аргумент       | Описание                                       | 
-|:-----:|:-------------------:|:-----------------------------------------------|
-|  -a   |          -          | Режим дополнения в существующие файлы (append) |
-|  -s   |          -          | Вывод краткой статистики                       |
-|  -f   |          -          | Вывод полной статистики                        |
-|  -o   |  Путь (директория)  | Путь для записи выходных файлов                |
-|  -p   | Префикс имени файла | Префикс для имени выходных файлов              |
-
+| Опция |      Аргумент       | По умолчанию |                    Описание                    |
+|:-----:|:-------------------:|:------------:|:----------------------------------------------:|
+|  -a   |          -          |    false     | Режим дополнения в существующие файлы (append) |
+|  -s   |          -          |     true     |            Вывод краткой статистики            |
+|  -f   |          -          |    false     |            Вывод полной статистики             |
+|  -o   |  Путь (директория)  |     "."      |        Путь для записи выходных файлов         |
+|  -p   | Префикс имени файла |      ""      |       Префикс для имени выходных файлов        |
 
 #### Пример запуска
 
 ```shell
 java -jar CFT-test.jar -f -o . -p sample- test.txt test1.txt
 ```
+
+### Особенности реализации
+
+#### Представление чисел - `BigInteger`, `BigDecimal`
+
+В связи с отсутствием ограничений на размер входных данных, было решено использовать класс 
+`BigInteger` для представления целых чисел и `BigDecimal` для вещественных. Данные классы позволяют хранить числа 
+практически неограниченного размера. `BigDecimal` также используется для расчета среднего для целых чисел.
+
+#### Входные аргументы и опции утилиты - `Apache Commons CLI`
+
+Для парсинга аргументов программы используется библиотека `Apache Commons CLI`, позволяющая удобно считывать опции.
+
+#### Считывание входных данных
+
+В задании не было информации насчет обработки пустых строк, поэтому было принято решение их игнорировать 
+(минимальная длина строки = 1)
