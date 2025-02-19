@@ -55,11 +55,16 @@
 
 Порядок действий:
 1. Склонировать репозиторий при помощи `git clone`
+
 ```shell
-git clone https://github.com/ArMetka/CFT-TestTask
+git clone git@github.com:ArMetka/CFT-TestTask.git
 ```
 
 2. Собрать проект при помощи `mvn` или `mvnw`
+> При использовании `mvnw` иногда необходимо явно указывать расположение скрипта: `./mvnw` или `.\mvnw`
+
+> При использовании `mvnw` на linux необходимо также разрешить исполнение командой `chmod`
+
 ```shell
 cd CFT-TestTask
 mvn clean package
