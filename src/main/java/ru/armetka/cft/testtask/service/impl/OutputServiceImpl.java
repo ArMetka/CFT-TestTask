@@ -82,6 +82,10 @@ public class OutputServiceImpl implements OutputService {
     }
 
     private <T> void writeList(Path path, List<T> list, Boolean appendMode) throws IOException {
+        if (list.isEmpty()) {
+            return;
+        }
+
         BufferedWriter writer = new BufferedWriter(new FileWriter(
                 path.toString(),
                 StandardCharsets.UTF_8,
