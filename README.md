@@ -79,9 +79,9 @@ cd target
 #### Синопсис
 
 ```shell
-java -jar CFT-test.jar [-afs]... [FILE]...
-java -jar CFT-test.jar [-afs]... -o OUTPUT_PATH [FILE]...
-java -jar CFT-test.jar [-afs]... -p OUTPUT_PREFIX [FILE]...
+java -jar CFT-test.jar [-afs]... [FILE.txt]...
+java -jar CFT-test.jar [-afs]... -o OUTPUT_PATH [FILE.txt]...
+java -jar CFT-test.jar [-afs]... -p OUTPUT_PREFIX [FILE.txt]...
 ```
 
 #### Опции
@@ -116,3 +116,7 @@ java -jar CFT-test.jar -f -o . -p sample- test.txt test1.txt
 
 В задании не было информации насчет обработки пустых строк, поэтому было принято решение их игнорировать 
 (минимальная длина строки = 1)
+
+#### Формат входных файлов
+
+Утилита обрабатывает входные файлы только с расширением `.txt`
